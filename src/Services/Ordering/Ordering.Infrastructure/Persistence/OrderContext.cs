@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Ordering.Domain.Common;
 using Ordering.Domain.Entities;
+using Ordering.Infrastructure.Mappings;
 
 namespace Ordering.Infrastructure.Persistence
 {
@@ -11,6 +12,11 @@ namespace Ordering.Infrastructure.Persistence
         }
 
         public DbSet<Order> Orders { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfiguration(new OrderMapping());
+        }
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
