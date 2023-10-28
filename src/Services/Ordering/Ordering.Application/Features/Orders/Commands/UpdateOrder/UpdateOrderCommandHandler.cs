@@ -22,11 +22,11 @@ namespace Ordering.Application.Features.Orders.Commands.UpdateOrder
 
         public async Task Handle(UpdateOrderCommand request, CancellationToken cancellationToken)
         {
-            var orderToUpdate = await _orderRepository.GetByIdAsync(request.Id);
+            var orderToUpdate = await _orderRepository.GetByIdAsync(request.id);
 
             if (orderToUpdate == null)
             {
-                throw new NotFoundException(nameof(Order), request.Id);
+                throw new NotFoundException(nameof(Order), request.id);
             }
 
             _mapper.Map(request, orderToUpdate, typeof(UpdateOrderCommand), typeof(Order));
