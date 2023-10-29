@@ -21,6 +21,6 @@ namespace Ordering.Application.Features.Orders.Commands.CheckoutOrder
         public string CardNumber { get; set; }
         public string Expiration { get; set; }
         public string CVV { get; set; }
-        public decimal PaymentMethod { get; set; }
+        public string PaymentMethod { get; set; }
     }
 }
