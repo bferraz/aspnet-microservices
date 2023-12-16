@@ -1,3 +1,4 @@
+using Ocelot.Cache.CacheManager;
 using Ocelot.DependencyInjection;
 using Ocelot.Middleware;
 
@@ -9,7 +10,8 @@ IConfiguration configuration = new ConfigurationBuilder()
 
 builder.Logging.AddConsole();
 
-builder.Services.AddOcelot(configuration);
+builder.Services.AddOcelot(configuration)
+    .AddCacheManager(settings => settings.WithDictionaryHandle());
 
 var app = builder.Build();
 
